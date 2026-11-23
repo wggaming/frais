@@ -69,9 +69,8 @@ input:focus-visible { outline: 3px solid var(--violet); outline-offset: 1px; }
     <p style="font-size:14px;color:var(--muted);margin:18px 0 0">Pas de mail d'ici quelques heures ? Écris-moi à <a class="js-mail" href="#">l'adresse de contact</a>.</p>
   </main>
 </div>
+<script src="reglages.js"></script>
 <script>
-var CONTACT_EMAIL = 'matthieu@wagramconseil.fr';
-Array.prototype.forEach.call(document.querySelectorAll('.js-mail'), function (a) { a.href = 'mailto:' + CONTACT_EMAIL; a.textContent = CONTACT_EMAIL; });
 (function () {
   var m = location.search.match(/[?&]t=([^&]+)/);
   if (!m || !window.crypto || !crypto.subtle) return;

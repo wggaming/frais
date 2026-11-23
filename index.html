@@ -15,21 +15,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="site.css">
 <style>
-:root{
-  --bg:#f4f5f2; --surface:#ffffff; --ink:#17201c; --muted:#5a6660; --line:#d8ddd8; --soft:#e9ece7;
-  --accent:#0d6b57; --accent-ink:#ffffff; --loss:#b8402c;
-  --c-bank:#3657c9; --c-av:#c0731a; --c-pea:#0d6b57;
-  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
-  --f-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --f-num:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
-}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#101512; --surface:#18201c; --ink:#e7ece9; --muted:#9aa7a0; --line:#2a342f; --soft:#212a25;
-  --accent:#4fc7a6; --accent-ink:#06140f; --loss:#ff8a72; --c-bank:#8aa3ff; --c-av:#f0a54c; --c-pea:#4fc7a6; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#101512; --surface:#18201c; --ink:#e7ece9; --muted:#9aa7a0; --line:#2a342f; --soft:#212a25;
-  --accent:#4fc7a6; --accent-ink:#06140f; --loss:#ff8a72; --c-bank:#8aa3ff; --c-av:#f0a54c; --c-pea:#4fc7a6; color-scheme:dark}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55}
 .wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -72,6 +59,18 @@ details p{margin-top:8px;color:var(--muted);font-size:15.5px}
 footer{border-top:1px solid var(--line);padding-block:28px 40px;font-size:13.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between}
 footer a{color:var(--muted)}
 @media (max-width:760px){.hero{grid-template-columns:1fr;gap:28px;padding-top:16px}.grid3{grid-template-columns:1fr}}
+/* Question d'accueil : la réponse est reprise dans le simulateur (clé fr-answers) */
+.qstart{margin-top:24px;background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px;max-width:520px}
+.qs-k{font:600 12px var(--f-num);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.qs-t{font:800 22px var(--f-display);color:var(--ink)}
+.qs-opts{display:flex;flex-direction:column;gap:8px}
+.qs-opts button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;font:700 16px var(--f-body);padding:13px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.qs-opts button small{font-weight:500;font-size:13.5px;color:var(--muted)}
+.qs-opts button:hover{border-color:var(--accent)}
+.qs-opts button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
+.qs-opts button[aria-pressed="true"] small{color:inherit;opacity:.85}
+.qs-opts button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.qs-s{text-align:center;color:var(--muted);font-size:14px}
 </style>
 </head>
 <body>
@@ -81,8 +80,17 @@ footer a{color:var(--muted)}
     <div>
       <div class="eyebrow">Banque · assurance-vie · PEA</div>
       <h1>Tes frais te coûtent peut-être <em>une voiture</em>.</h1>
-      <p class="lede">Quelques euros par mois, 0,7 % par-ci, 1,6 % par-là : séparément, ça ne se voit pas. Additionnés sur 20 ans, avec ce que cet argent aurait rapporté, ça fait souvent plusieurs dizaines de milliers d'euros.</p>
-      <div class="cta"><a class="btn primary" href="simulateur.html" id="go">Calculer mes frais</a><small>Gratuit · 2 minutes · sans inscription</small></div>
+      <form class="qstart" id="qstart" onsubmit="return false">
+        <span class="qs-k">Étape 1 sur 3 · ton compte courant</span>
+        <span class="qs-t" id="qs-t">Tu es dans quelle banque ?</span>
+        <div class="qs-opts" role="group" aria-labelledby="qs-t">
+          <button type="button" data-v="trad">Une banque traditionnelle, avec agence<small>On compte la moyenne 2025 : 229 € par an</small></button>
+          <button type="button" data-v="online">Une banque en ligne<small>Souvent gratuite sous conditions : on compte 0 €</small></button>
+          <button type="button" data-v="exact">Je connais mon montant<small>Sur le récapitulatif annuel des frais reçu en janvier</small></button>
+        </div>
+        <small class="qs-s">Gratuit · 2 minutes · sans inscription · <a href="simulateur.html" id="go">commencer sans répondre</a></small>
+      </form>
+      <p class="lede" style="margin-top:20px">Quelques euros par mois, 0,7 % par-ci, 1,6 % par-là : séparément, ça ne se voit pas. Additionnés sur 20 ans, avec ce que cet argent aurait rapporté, ça fait souvent plusieurs dizaines de milliers d'euros.</p>
     </div>
     <aside class="ticket" aria-label="Exemple de résultat">
       <div class="eyebrow">Exemple sur 20 ans</div>
@@ -135,6 +143,21 @@ footer a{color:var(--muted)}
 
 <div class="wrap"><footer><span>Édité par WG Conseil · <a href="https://vote.wagramconseil.fr/">Ce que coûte mon vote</a></span><a href="legal.html">Mentions légales, CGV, confidentialité</a></footer></div>
 <script src="stats.js"></script>
-<script>document.getElementById('go').addEventListener('click',function(){try{if(window.track)track('frais-accueil-clic')}catch(e){}});</script>
+<script>
+document.getElementById('go').addEventListener('click',function(){try{if(window.track)track('frais-accueil-clic')}catch(e){}});
+/* Question d'accueil : la réponse est enregistrée comme réponse du simulateur, puis on ouvre le test.
+   Statistiques : un événement par réponse (frais-accueil-banque-trad, -online, -exact). */
+(function(){
+  var f=document.getElementById('qstart'); if(!f) return;
+  Array.prototype.forEach.call(f.querySelectorAll('[data-v]'),function(b){b.onclick=function(){
+    var v=b.getAttribute('data-v'), A={}, done=false;
+    Array.prototype.forEach.call(f.querySelectorAll('[data-v]'),function(x){x.setAttribute('aria-pressed',String(x===b));});
+    try{done=JSON.parse(localStorage.getItem('fr-done')||'false')===true;A=JSON.parse(localStorage.getItem('fr-answers')||'{}')||{};}catch(e){}
+    if(!done){A.bank=v;try{localStorage.setItem('fr-answers',JSON.stringify(A));}catch(e){}}
+    try{if(window.track)track('frais-accueil-banque-'+v);}catch(e){}
+    setTimeout(function(){location.href='simulateur.html'+(done?'':'?bank='+v);},150);
+  };});
+})();
+</script>
 </body>
 </html>
