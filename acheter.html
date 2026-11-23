@@ -85,13 +85,9 @@ input:focus-visible { outline: 3px solid var(--violet); outline-offset: 1px; }
   <p style="text-align:center;font-size:13px;margin-top:16px"><a href="legal.html" style="color:inherit;opacity:.7">Mentions légales, CGV, confidentialité</a></p>
 </div>
 
+<script src="reglages.js"></script>
 <script>
-/* À régler avant la mise en ligne */
-var PAYMENT_URL = 'https://payment-links.mollie.com/payment/tV4G8T85wTPEpCfNRntAN';   // lien de paiement Mollie à 1 € (réutilisable, redirection vers merci.html?t=…), à coller entre les guillemets
-var PRICE_LABEL = '1 €';
-var CONTACT_EMAIL = 'matthieu@wagramconseil.fr';
-var FORM_KEY = '77a148e4-eed9-4a7d-8f58-e513b927e632';   // clé publique Web3Forms (web3forms.com), à coller entre les guillemets
-
+/* Prix, lien de paiement, adresse de contact et clé du formulaire : voir reglages.js */
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   $('price').textContent = PRICE_LABEL;

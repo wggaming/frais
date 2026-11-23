@@ -1,0 +1,20 @@
+/* Couleurs et polices communes à l'accueil (index.html) et au simulateur (simulateur.html).
+   Pour changer une couleur, c'est ici, une seule fois. --c-bank, --c-av, --c-pea : couleurs des trois enveloppes
+   (pense aussi aux couleurs « hex » de CATS dans js/simulateur.js, utilisées pour le PDF).
+   Les couleurs sombres servent quand le téléphone ou l'ordinateur est en mode sombre (les deux blocs du bas doivent rester identiques). */
+:root{
+  --bg:#f4f5f2; --surface:#ffffff; --ink:#17201c; --muted:#5a6660; --line:#d8ddd8; --soft:#e9ece7;
+  --accent:#0d6b57; --accent-ink:#ffffff; --loss:#b8402c; --warn:#fff3c4; --warnink:#5a4300;
+  --c-bank:#3657c9; --c-av:#c0731a; --c-pea:#0d6b57;
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-num:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#101512; --surface:#18201c; --ink:#e7ece9; --muted:#9aa7a0; --line:#2a342f; --soft:#212a25;
+  --accent:#4fc7a6; --accent-ink:#06140f; --loss:#ff8a72; --warn:#4a3d0a; --warnink:#ffe9a0;
+  --c-bank:#8aa3ff; --c-av:#f0a54c; --c-pea:#4fc7a6; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101512; --surface:#18201c; --ink:#e7ece9; --muted:#9aa7a0; --line:#2a342f; --soft:#212a25;
+  --accent:#4fc7a6; --accent-ink:#06140f; --loss:#ff8a72; --warn:#4a3d0a; --warnink:#ffe9a0;
+  --c-bank:#8aa3ff; --c-av:#f0a54c; --c-pea:#4fc7a6; color-scheme:dark}
