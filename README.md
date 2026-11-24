@@ -13,6 +13,8 @@ Simulateur statique (GitHub Pages) servi à https://frais.wagramconseil.fr : fra
 | Le résultat, l'encart payant, la page A4 en PDF | `js/simulateur.js` |
 | Une couleur (dont celles des trois enveloppes) | `site.css` (et les couleurs `hex` de `CATS` dans `js/simulateur.js` pour le PDF) |
 | Les textes de l'accueil, la méthode et les sources | `index.html` |
+| Les questions fréquentes (lues par Google et ses réponses IA) : si un chiffre moyen change dans `js/hypotheses.js`, le changer aussi ici | `index.html` (bloc « Questions fréquentes » et sa copie dans le bloc `application/ld+json` en haut) |
+| Ce que les moteurs de recherche et les assistants IA peuvent lire | `robots.txt`, `sitemap.xml` (date `lastmod` à changer quand une page change) |
 | La question posée dès l'accueil (« Tu es dans quelle banque ? ») | `index.html` (bloc `qstart` et son script en bas de page) |
 | Les codes de déblocage acceptés | `codes.js` (empreintes produites par l'outil privé) |
 | Les mentions légales, CGV, confidentialité | `legal.html` (garde sa propre copie de l'adresse et du prix) |
